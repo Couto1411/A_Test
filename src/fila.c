@@ -79,7 +79,7 @@ void FImprime(Fila* f) {
 
 	aux = f->first->prox;
 	while (aux != NULL) {
-		printf("Posição: %d, %d\t Distância: %.2f   //   ", aux->data.lin, aux->data.col, aux->data.distancia);
+		printf("%d, %d/%.2f\t", aux->data.lin, aux->data.col, aux->data.distancia);
 		aux = aux->prox;
 	}
 	printf("\n");
@@ -94,14 +94,17 @@ void printMatrix() {
 	}
 }
 
-int BFS(Fila* fila) {
+int BFS(Fila* fila,int eucli_manha) {
 	int iteracoes = 0;
 	int posicoesLinha[4] = { 1, 0, -1, 0 };
 	int posicoesColuna[4] = { 0, 1, 0, -1 };
 	Item item;
 	item.col = 0;
 	item.lin = 0;
-	item.distancia = DistanciaEuclidiana(item.lin, item.col);
+	if (eucli_manha==1)
+		item.distancia = DistanciaEuclidiana(item.lin, item.col);
+	else
+		item.distancia = DistanciaManhattan(item.lin, item.col);
 	matrix[0][0] = 2;
 	Enfileira(fila, item);
 
@@ -117,16 +120,20 @@ int BFS(Fila* fila) {
 			if (isValid(adjx, adjy)) {
 				item.lin = adjx;
 				item.col = adjy;
-				item.distancia = DistanciaEuclidiana(item.lin, item.col);
+				if (eucli_manha==1)
+            		item.distancia = DistanciaEuclidiana(item.lin, item.col);
+            	else
+            		item.distancia = DistanciaManhattan(item.lin, item.col);
 				Enfileira(fila, item);
 				matrix[adjx][adjy] = 2;
 			}
 		}
 		Ordena(fila, TamanhoFila(fila));
+		item.lin = fila->first->prox->data.lin;
+		item.col = fila->first->prox->data.col;
 		printf("\n");
-		printMatrix();
 		iteracoes++;
-		logFila(fila);
+		FImprime(fila);
 	}
 	if (fila->first->prox != NULL)
 		printf("Chega no final\n");
@@ -147,6 +154,11 @@ bool isValid(int lin, int col) {
 float DistanciaEuclidiana(int lin, int col) {
 	float distancia;
 	distancia = sqrt((pow((lin - (tamanhoMatrix - 1)), 2) + pow((col - (tamanhoMatrix - 1)), 2)));
+	return distancia;
+}
+float DistanciaManhattan(int lin, int col) {
+	float distancia;
+	distancia = abs((lin-(tamanhoMatrix-1)))+abs((col-(tamanhoMatrix-1)));
 	return distancia;
 }
 
