@@ -133,7 +133,7 @@ int BFS(Fila* fila,int eucli_manha) {
 		item.col = fila->first->prox->data.col;
 		printf("\n");
 		iteracoes++;
-		FImprime(fila);
+		logFila(fila);
 	}
 	if (fila->first->prox != NULL)
 		printf("Chega no final\n");
