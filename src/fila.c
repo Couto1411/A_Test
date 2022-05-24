@@ -1,23 +1,20 @@
 #include "fila.h"
 
-int tamanhoMatrix;
-int** matrix;
-
 void FFVazia(Fila* f) {
-	f->first = (Block*)malloc(sizeof(Block));
+	f->first = (BlockFila*)malloc(sizeof(BlockFila));
 	f->last = f->first;
 	f->first->prox = NULL;
 }
 
-void Enfileira(Fila* f, Item d) {
-	f->last->prox = (Block*)malloc(sizeof(Block));
+void Enfileira(Fila* f, ItemFila d) {
+	f->last->prox = (BlockFila*)malloc(sizeof(BlockFila));
 	f->last = f->last->prox;
 	f->last->data = d;
 	f->last->prox = NULL;
 }
 
 void Desenfileira(Fila* f) {
-	Block* aux;
+	BlockFila* aux;
 	if (f->first == f->last || f == NULL || f->first->prox == NULL) {
 		return;
 	}
@@ -26,39 +23,12 @@ void Desenfileira(Fila* f) {
 	free(aux);
 }
 
-void preencheMatrix() {
-	FILE* f;
-	char arquivo[80];
-	int barreirai, barreiraj;
-	printf("Qual o nome do arquivo do labirinto? (Max 80)\n");
-	fgets(arquivo, 80, stdin);
-	arquivo[strlen(arquivo) - 1] = '\0';
-	if (!(f = fopen(arquivo, "r"))) {
-		printf("Erro ao abrir arquivo.\n");
-		exit(1);
-	}
-	fscanf(f, "%d", &tamanhoMatrix);
-	matrix = (int**)malloc(sizeof(int*) * (tamanhoMatrix + 1));
-	for (int i = 0; i < tamanhoMatrix + 1; i++) {
-		matrix[i] = (int*)malloc(sizeof(int) * tamanhoMatrix);
-		for (int j = 0; j < tamanhoMatrix; j++)
-			matrix[i][j] = 0;
-	}
-	while (!feof(f)) {
-		fscanf(f, "%d", &barreirai);
-		fgetc(f);
-		fscanf(f, "%d", &barreiraj);
-		matrix[barreirai][barreiraj] = 1;
-	}
-	fclose(f);
-}
-
 void logFila(Fila* fila) {
 	FILE* f;
 	char str[500] = "\0";
 	char numero[7];
 	f = fopen("Log.txt", "a");
-	Block* aux;
+	BlockFila* aux;
 	aux = fila->first->prox;
 	while (aux != NULL) {
 		sprintf(numero, "%d", aux->data.lin);
@@ -75,7 +45,7 @@ void logFila(Fila* fila) {
 }
 
 void FImprime(Fila* f) {
-	Block* aux;
+	BlockFila* aux;
 
 	aux = f->first->prox;
 	while (aux != NULL) {
@@ -85,25 +55,16 @@ void FImprime(Fila* f) {
 	printf("\n");
 }
 
-void printMatrix() {
-	for (int i = 0; i < tamanhoMatrix; i++)
-	{
-		for (int j = 0; j < tamanhoMatrix; j++)
-			printf("%d ", matrix[i][j]);
-		printf("\n");
-	}
-}
-
 int BFS(Fila* fila,int eucli_manha) {
 	int iteracoes = 0;
 	int posicoesLinha[4] = { 1, 0, -1, 0 };
 	int posicoesColuna[4] = { 0, 1, 0, -1 };
-	Item item;
+	ItemFila item;
 	item.col = 0;
 	item.lin = 0;
 	if (eucli_manha==1)
 		item.distancia = DistanciaEuclidiana(item.lin, item.col);
-	else
+	else if(eucli_manha==2)
 		item.distancia = DistanciaManhattan(item.lin, item.col);
 	matrix[0][0] = 2;
 	Enfileira(fila, item);
@@ -122,16 +83,16 @@ int BFS(Fila* fila,int eucli_manha) {
 				item.col = adjy;
 				if (eucli_manha==1)
             		item.distancia = DistanciaEuclidiana(item.lin, item.col);
-            	else
+            	else if(eucli_manha==2)
             		item.distancia = DistanciaManhattan(item.lin, item.col);
 				Enfileira(fila, item);
 				matrix[adjx][adjy] = 2;
 			}
 		}
-		Ordena(fila, TamanhoFila(fila));
+		if(eucli_manha==2||eucli_manha==1)
+			Ordena(fila, TamanhoFila(fila));
 		item.lin = fila->first->prox->data.lin;
 		item.col = fila->first->prox->data.col;
-		printf("\n");
 		iteracoes++;
 		logFila(fila);
 	}
@@ -140,15 +101,6 @@ int BFS(Fila* fila,int eucli_manha) {
 	else
 		printf("Não chega no final\n");
 	return iteracoes;
-}
-
-bool isValid(int lin, int col) {
-	if (lin < 0 || col < 0 || lin >= tamanhoMatrix || col >= tamanhoMatrix)
-		return false;
-	else if (matrix[lin][col] == 1 || matrix[lin][col] == 2)
-		return false;
-	else
-		return true;
 }
 
 float DistanciaEuclidiana(int lin, int col) {
@@ -163,8 +115,8 @@ float DistanciaManhattan(int lin, int col) {
 }
 
 void Ordena(Fila* fila, int lenght) {
-	Block* aux;
-	Item lista[lenght];
+	BlockFila* aux;
+	ItemFila lista[lenght];
 	int i = 0, j;
 	aux = fila->first->prox;
 	while (aux != NULL) {
@@ -196,15 +148,15 @@ void Ordena(Fila* fila, int lenght) {
 	}
 
 }
-void swap(Item* xp, Item* yp)
+void swap(ItemFila* xp, ItemFila* yp)
 {
-	Item temp = *xp;
+	ItemFila temp = *xp;
 	*xp = *yp;
 	*yp = temp;
 }
 
 int TamanhoFila(Fila* f) {
-	Block* aux;
+	BlockFila* aux;
 	int cont = 0;
 	aux = f->first->prox;
 	while (aux != NULL) {

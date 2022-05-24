@@ -1,45 +1,38 @@
 #ifndef FILA_H 
 #define FILA_H
 
-#include<math.h>
-#include<stdio.h>
-#include<stdlib.h>
-#include<stdbool.h>
-#include<string.h>
+#include "matrix.h"
 
-typedef struct Item Item;
-typedef struct Block Block;
+typedef struct ItemFila ItemFila;
+typedef struct BlockFila BlockFila;
 typedef struct Fila Fila;
 
-struct Item {
+struct ItemFila {
 	int lin;
 	int col;
 	float distancia;
 };
 
-struct Block {
-	Item data;
-	Block* prox;
+struct BlockFila {
+	ItemFila data;
+	BlockFila* prox;
 };
 
 struct Fila {
-	Block* first;
-	Block* last;
+	BlockFila* first;
+	BlockFila* last;
 };
 
 void FFVazia(Fila* f);
-void Enfileira(Fila* f, Item d);
+void Enfileira(Fila* f, ItemFila d);
 void Desenfileira(Fila* f);
 void logFila(Fila* fila);
 void FImprime(Fila* f);
-void preencheMatrix();
-void printMatrix();
 int BFS(Fila* fila,int eucli_manha);
-bool isValid(int lin, int col);
 float DistanciaEuclidiana(int lin, int col);
 float DistanciaManhattan(int lin, int col);
 void Ordena(Fila* fila, int lenght);
-void swap(Item* xp, Item* yp);
+void swap(ItemFila* xp, ItemFila* yp);
 int TamanhoFila(Fila* f);
 
 #endif
