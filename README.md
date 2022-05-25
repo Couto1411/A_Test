@@ -95,8 +95,10 @@ Exemplo de execução 3:
 </p>
 <p align="center">
 	<img src="imgs/exemplo_exec_a3.jpg"/> 
-</p>   
-# Conclusão
+</p>    
+
+# Conclusão     
+
 Analisando os dados coletados a partir de execuções distintas podemos chegar a algumas conclusões:     
 O algoritmo BFS sempre se mostrou o pior entre os algoritmos já que ele verifica diversos pontos que estão muito longe do final. (Os A* apresentam desempenho semelhante ao BFS dependendo do labirinto estabelecido);         
 Em um teste controle (matriz vazia) vemos que os algoritmos DFS, A* euclidiana, A* manhattan possuem mesma quantidade de iterações, porém podemos variar isso:     
