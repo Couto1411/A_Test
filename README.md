@@ -53,23 +53,56 @@ Obs.:
 - O arquivo deve ser dado na mesma maneira que o apresentado.
 # Exemplo de execução
 Arquivo:
->6      
->0,1       
->2,0      
->3,2        
->1,2     
+>9    
+>3,4     
+>4,5    
+>5,4    
+>8,3    
+>7,3  
 
 Execução:
 </p>
 <p align="center">
-	<img src="imgs/exec.jpg"/> 
-</p> 
-
-Log.txt:
+	<img src="imgs/comeco_exec_a.jpg"/> 
+</p>       
 </p>
 <p align="center">
-	<img src="imgs/logtxt.jpg"/> 
+	<img src="imgs/exemplo_exec_a.jpg"/> 
 </p> 
+
+BFS.txt:     
+<p align="center">
+	<img src="imgs/bfs.jpg"/> 
+</p>
+A_Estrela_EC:      
+<p align="center">
+	<img src="imgs/aec.jpg"/> 
+</p>
+A_Estrela_MH:      
+<p align="center">
+	<img src="imgs/amh.jpg"/> 
+</p>
+DFS:      
+<p align="center">
+	<img src="imgs/dfs.jpg"/> 
+</p>
+Exemplo de execução 2:     
+</p>
+<p align="center">
+	<img src="imgs/exemplo_exec_a2.jpg"/> 
+</p>   
+Exemplo de execução 3:     
+</p>
+<p align="center">
+	<img src="imgs/exemplo_exec_a3.jpg"/> 
+</p>   
+# Conclusão
+Analisando os dados coletados a partir de execuções distintas podemos chegar a algumas conclusões:     
+O algoritmo BFS sempre se mostrou o pior entre os algoritmos já que ele verifica diversos pontos que estão muito longe do final. (Os A* apresentam desempenho semelhante ao BFS dependendo do labirinto estabelecido);         
+Em um teste controle (matriz vazia) vemos que os algoritmos DFS, A* euclidiana, A* manhattan possuem mesma quantidade de iterações, porém podemos variar isso:     
+Como A* manhattan e DFS apresentaram iterações iguais ou se não muito próximas, podemos testar qual é o melhor quando encaminhamos o algoritmo para percorrer a parte superior da diagonal principal (Exemplo de execução 3), vemos que A* manhattan por calcular as distâncias e percorrer pelo caminho otimizado apresenta menores iterações do que o DFS;      
+Podemos concluir também que cada algoritmo demonstra melhor desempenho de acordo com a disposição de barreiras, como visto no Exemplo de Execução 2, o A* euclidiana apresenta menor número de iterações quando a parte central do labirinto está livre, vemos também (Exemplo de execução 3) que quando a parte inferior do algoritmo está liberada os algoritmos DFS e A* manhattan apresentam menos iterações;      
+Chegamos então na conclusão de que não existe um melhor algoritmo geral, depende-se primeiramente do conhecimento da distribuição de barreiras, para definir o melhor algoritmo de busca a ser utilizado. Apesar de cada algoritmo possuir seu melhor caso, por meio de diversas execuções podemos ver que o algoritmo que apresentou menor número de iterações mais vezes foi o A* euclidiana, já que ele tenta se manter no menor caminho da matriz, que seria a diagonal principal.    
 
 # Referências
 
