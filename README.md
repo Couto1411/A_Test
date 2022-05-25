@@ -24,7 +24,7 @@ O programa a seguir apresenta algoritmos baseados de: [DFS](https://github.com/p
 
 5) Independente da opção é criado um arquivo com o nome do método de busca escolhido para servir de log para cada busca na função *AbreArquivo(int opcao)*;
 
-6) Ao executar a função *BFS(&F,opcao)*, dentro da função o programa escolhe qual rotina deverá executar, para cassos de *opcao* sendo 0-BFS, 1-A\*euclidiana 2-A\*manhattan. A fila usada para o BFS, diferentemente do referenciado possui um atributo distancia, que é preenchido quando opcao leva a A*. Sendo o seguinte:   
+6) Ao executar a função *BFS(&F,opcao)*, dentro da função o programa escolhe qual rotina deverá executar, para cassos de *opcao* sendo 0-BFS, 1-A\*euclidiana, 2-A\*manhattan. A fila usada para o BFS, diferentemente do referenciado possui um atributo distancia, que é preenchido quando *opcao* leva a A*. Sendo o seguinte:   
 - Colocasse a posição {0,0} na fila;  
 - Caso opcao=1:      
 	- Calcula distância euclidiana da linha e da coluna da posição;      
@@ -100,11 +100,16 @@ Exemplo de execução 3:
 # Conclusão     
 
 Analisando os dados coletados a partir de execuções distintas podemos chegar a algumas conclusões:     
-O algoritmo BFS sempre se mostrou o pior entre os algoritmos já que ele verifica diversos pontos que estão muito longe do final. (Os A* apresentam desempenho semelhante ao BFS dependendo do labirinto estabelecido);         
-Em um teste controle (matriz vazia) vemos que os algoritmos DFS, A* euclidiana, A* manhattan possuem mesma quantidade de iterações, porém podemos variar isso:     
-Como A* manhattan e DFS apresentaram iterações iguais ou se não muito próximas, podemos testar qual é o melhor quando encaminhamos o algoritmo para percorrer a parte superior da diagonal principal (Exemplo de execução 3), vemos que A* manhattan por calcular as distâncias e percorrer pelo caminho otimizado apresenta menores iterações do que o DFS;      
-Podemos concluir também que cada algoritmo demonstra melhor desempenho de acordo com a disposição de barreiras, como visto no Exemplo de Execução 2, o A* euclidiana apresenta menor número de iterações quando a parte central do labirinto está livre, vemos também (Exemplo de execução 3) que quando a parte inferior do algoritmo está liberada os algoritmos DFS e A* manhattan apresentam menos iterações;      
-Chegamos então na conclusão de que não existe um melhor algoritmo geral, depende-se primeiramente do conhecimento da distribuição de barreiras, para definir o melhor algoritmo de busca a ser utilizado. Apesar de cada algoritmo possuir seu melhor caso, por meio de diversas execuções podemos ver que o algoritmo que apresentou menor número de iterações mais vezes foi o A* euclidiana, já que ele tenta se manter no menor caminho da matriz, que seria a diagonal principal.    
+      
+O algoritmo *BFS* sempre se mostrou o pior entre os algoritmos já que ele verifica diversos pontos que estão muito longe do final. (Os *A\** apresentam desempenho semelhante ao *BFS* dependendo do labirinto estabelecido);         
+
+Em um teste controle (matriz vazia) vemos que os algoritmos *DFS*, *A\* euclidiana*, *A\* manhattan* possuem mesma quantidade de iterações, porém podemos variar isso:     
+    
+Como *A\* manhattan* e *DFS* apresentaram iterações iguais ou se não muito próximas, podemos testar qual é o melhor quando encaminhamos o algoritmo para percorrer a parte superior da diagonal principal (*Exemplo de execução 3*), vemos que *A\* manhattan* por calcular as distâncias e percorrer pelo caminho otimizado apresenta menores iterações do que o *DFS*;      
+     
+Podemos concluir também que cada algoritmo demonstra melhor desempenho de acordo com a disposição de barreiras, como visto no *Exemplo de Execução 2*, o *A\* euclidiana* apresenta menor número de iterações quando a parte central do labirinto está livre, vemos também (*Exemplo de execução 3*) que quando a parte inferior do algoritmo está liberada os algoritmos *DFS* e *A\* manhattan* apresentam menos iterações;      
+       
+Chegamos então na conclusão de que não existe um melhor algoritmo geral, depende-se primeiramente do conhecimento da distribuição de barreiras, para definir o melhor algoritmo de busca a ser utilizado. Apesar de cada algoritmo possuir seu melhor caso, por meio de diversas execuções podemos ver que o algoritmo que apresentou menor número de iterações mais vezes foi o *A\* euclidiana*, já que ele tenta se manter no menor caminho da matriz, que seria a diagonal principal.    
 
 # Referências
 
