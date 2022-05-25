@@ -51,6 +51,11 @@ O programa a seguir apresenta algoritmos baseados de: [DFS](https://github.com/p
 
 Obs.:    
 - O arquivo deve ser dado na mesma maneira que o apresentado.
+- Caminhos de cada algoritmo:
+<p align="center">
+	<img src="imgs/Caminhos.jpg"/> 
+</p>  
+
 # Exemplo de execução
 Arquivo:
 >9    
