@@ -11,7 +11,10 @@ int tamanhoMatrix;
 int** matrix;
 
 void preencheMatrix();
+void resetaMatrix();
 void printMatrix();
 bool isValid(int lin, int col);
+void AbreArquivo(int opcao);
+void FechaArquivo(int opcao);
 
 #endif

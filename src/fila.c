@@ -23,11 +23,16 @@ void Desenfileira(Fila* f) {
 	free(aux);
 }
 
-void logFila(Fila* fila) {
+void logFila(Fila* fila, int bfs_euc_man) {
 	FILE* f;
 	char str[500] = "\0";
 	char numero[7];
-	f = fopen("Log.txt", "a");
+	if (bfs_euc_man==0)
+		f = fopen("BFS.txt", "a");
+	else if (bfs_euc_man==1)
+		f = fopen("A_Estrela_EC.txt", "a");
+	else
+		f = fopen("A_Estrela_MH.txt", "a");
 	BlockFila* aux;
 	aux = fila->first->prox;
 	while (aux != NULL) {
@@ -89,12 +94,20 @@ int BFS(Fila* fila,int eucli_manha) {
 				matrix[adjx][adjy] = 2;
 			}
 		}
-		if(eucli_manha==2||eucli_manha==1)
+		if(eucli_manha==2||eucli_manha==1){
 			Ordena(fila, TamanhoFila(fila));
+			if (eucli_manha==2)
+				logFila(fila,2);
+			else
+				logFila(fila,1);
+		}
+		else
+			logFila(fila,0);
+
 		item.lin = fila->first->prox->data.lin;
 		item.col = fila->first->prox->data.col;
 		iteracoes++;
-		logFila(fila);
+		
 	}
 	if (fila->first->prox != NULL)
 		printf("Chega no final\n");

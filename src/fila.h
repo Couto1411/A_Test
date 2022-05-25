@@ -26,7 +26,7 @@ struct Fila {
 void FFVazia(Fila* f);
 void Enfileira(Fila* f, ItemFila d);
 void Desenfileira(Fila* f);
-void logFila(Fila* fila);
+void logFila(Fila* fila, int bfs_euc_man);
 void FImprime(Fila* f);
 int BFS(Fila* fila,int eucli_manha);
 float DistanciaEuclidiana(int lin, int col);
