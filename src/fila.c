@@ -28,11 +28,11 @@ void logFila(Fila* fila, int bfs_euc_man) {
 	char str[500] = "\0";
 	char numero[7];
 	if (bfs_euc_man==0)
-		f = fopen("BFS.txt", "a");
+		f = fopen("logs/BFS.txt", "a");
 	else if (bfs_euc_man==1)
-		f = fopen("A_Estrela_EC.txt", "a");
+		f = fopen("logs/A_Estrela_EC.txt", "a");
 	else
-		f = fopen("A_Estrela_MH.txt", "a");
+		f = fopen("logs/A_Estrela_MH.txt", "a");
 	BlockFila* aux;
 	aux = fila->first->prox;
 	while (aux != NULL) {

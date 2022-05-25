@@ -42,7 +42,7 @@ void logPilha(Pilha *pilha){
     FILE *f;
     char str[500]="\0";
     char numero[7];
-    f=fopen("DFS.txt","a");
+    f=fopen("logs/DFS.txt","a");
     BlockPilha *aux;
     aux = pilha->top;
     while(aux != pilha->base){

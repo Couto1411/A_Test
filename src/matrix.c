@@ -61,16 +61,16 @@ void AbreArquivo(int opcao){
 	switch (opcao)
 	{
 	case 0:
-		arquivo = fopen("BFS.txt", "w");
+		arquivo = fopen("logs/BFS.txt", "w");
 		break;
 	case 1:
-		arquivo = fopen("A_Estrela_EC.txt", "w");
+		arquivo = fopen("logs/A_Estrela_EC.txt", "w");
 		break;
 	case 2:
-		arquivo = fopen("A_Estrela_MH.txt", "w");
+		arquivo = fopen("logs/A_Estrela_MH.txt", "w");
 		break;
 	case 3:
-		arquivo = fopen("DFS.txt", "w");
+		arquivo = fopen("logs/DFS.txt", "w");
 		break;
 	default:
 		break;
@@ -84,16 +84,16 @@ void FechaArquivo(int opcao){
 	switch (opcao)
 	{
 	case 0:
-		arquivo = fopen("BFS.txt", "a");
+		arquivo = fopen("logs/BFS.txt", "a");
 		break;
 	case 1:
-		arquivo = fopen("A_Estrela_EC.txt", "a");
+		arquivo = fopen("logs/A_Estrela_EC.txt", "a");
 		break;
 	case 2:
-		arquivo = fopen("A_Estrela_MH.txt", "a");
+		arquivo = fopen("logs/A_Estrela_MH.txt", "a");
 		break;
 	case 3:
-		arquivo = fopen("DFS.txt", "a");
+		arquivo = fopen("logs/DFS.txt", "a");
 		break;
 	default:
 		break;
